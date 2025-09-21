@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  rabbitmq:
+    host: ${SPRING_RABBITMQ_HOST:localhost}
+    port: 5672
+    username: guest
+    password: guest
+
+app:
+  service-id: ${APP_SERVICE_ID:ms1-LOCAL-001}
+  heartbeat-ms: 5000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

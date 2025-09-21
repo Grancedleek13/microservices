@@ -1,0 +1,25 @@
+<<<<<<< HEAD
+### Отправить сообщение (MS1)
+POST http://localhost:8081/api/v1/send
+Content-Type: application/json
+
+{
+  "serviceId": "ms1-LOCAL-001",
+  "text": "hello from ms1"
+}
+
+### Список пользователей (MS3)
+GET http://localhost:8083/api/v1/users
+=======
+### Отправить сообщение (MS1)
+POST http://localhost:8081/api/v1/send
+Content-Type: application/json
+
+{
+  "serviceId": "ms1-LOCAL-001",
+  "text": "hello from ms1"
+}
+
+### Список пользователей (MS3)
+GET http://localhost:8083/api/v1/users
+>>>>>>> ef3d020 (Initial commit: microservices demo project)

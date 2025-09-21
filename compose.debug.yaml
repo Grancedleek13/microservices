@@ -1,0 +1,25 @@
+<<<<<<< HEAD
+services:
+  microservicesdemo:
+    image: microservicesdemo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 3000:3000
+      - 5005:5005
+=======
+services:
+  microservicesdemo:
+    image: microservicesdemo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      JAVA_OPTS: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005,quiet=y
+    ports:
+      - 3000:3000
+      - 5005:5005
+>>>>>>> ef3d020 (Initial commit: microservices demo project)

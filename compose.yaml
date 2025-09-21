@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+services:
+  microservicesdemo:
+    image: microservicesdemo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+=======
+services:
+  microservicesdemo:
+    image: microservicesdemo
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+>>>>>>> ef3d020 (Initial commit: microservices demo project)

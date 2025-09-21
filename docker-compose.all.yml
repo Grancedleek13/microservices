@@ -1,0 +1,97 @@
+<<<<<<< HEAD
+version: "3.8"
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: microservices
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: [ "5432:5432" ]
+    volumes: [ "pgdata:/var/lib/postgresql/data" ]
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports: [ "5672:5672", "15672:15672" ]
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  service1-sender:
+    build: ./service1-sender
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      APP_SERVICE_ID: ms1-DOCKER-001
+    depends_on: [ rabbitmq ]
+    ports: [ "8081:8081" ]
+
+  service2-core:
+    build: ./service2-core
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/microservices
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_RABBITMQ_HOST: rabbitmq
+      APP_MS3_BASE_URL: http://service3-admin:8083
+    depends_on: [ postgres, rabbitmq ]
+    ports: [ "8082:8082" ]
+
+  service3-admin:
+    build: ./service3-admin
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      APP_MS2_BASE_URL: http://service2-core:8082
+    depends_on: [ rabbitmq, service2-core ]
+    ports: [ "8083:8083" ]
+
+volumes:
+  pgdata:
+=======
+version: "3.8"
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: microservices
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: [ "5432:5432" ]
+    volumes: [ "pgdata:/var/lib/postgresql/data" ]
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports: [ "5672:5672", "15672:15672" ]
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  service1-sender:
+    build: ./service1-sender
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      APP_SERVICE_ID: ms1-DOCKER-001
+    depends_on: [ rabbitmq ]
+    ports: [ "8081:8081" ]
+
+  service2-core:
+    build: ./service2-core
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/microservices
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_RABBITMQ_HOST: rabbitmq
+      APP_MS3_BASE_URL: http://service3-admin:8083
+    depends_on: [ postgres, rabbitmq ]
+    ports: [ "8082:8082" ]
+
+  service3-admin:
+    build: ./service3-admin
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      APP_MS2_BASE_URL: http://service2-core:8082
+    depends_on: [ rabbitmq, service2-core ]
+    ports: [ "8083:8083" ]
+
+volumes:
+  pgdata:
+>>>>>>> ef3d020 (Initial commit: microservices demo project)
