@@ -1,22 +1,38 @@
-## Быстрый старт (VS Code)
-1. Установи JDK 11, Docker Desktop, VS Code.
-2. Открой проект в VS Code, подтяни рекомендуемые расширения.
-3. `Terminal → Run Task → infra: up`.
-4. Запусти сервисы через Debug (`Run All Services`) или по отдельности.
-5. Swagger:
-   - MS1: http://localhost:8081/swagger-ui.html
-   - MS2: http://localhost:8082/swagger-ui.html
-   - MS3: http://localhost:8083/swagger-ui.html
-6. RabbitMQ UI: http://localhost:15672 (guest/guest)
-# Microservices Demo (Spring Boot + Kotlin + RabbitMQ + Postgres)
+Демонстрационная микросервисная система на Kotlin и Spring Boot с асинхронным обменом сообщениями через RabbitMQ, хранением данных в PostgreSQL и документированием API через OpenAPI / Swagger.
+## Что реализовано
+- Разделение системы на несколько сервисов с разной ответственностью
+- HTTP-взаимодействие и обмен сообщениями через RabbitMQ
+- Хранение данных в PostgreSQL
+- Миграции схемы базы данных через Flyway
+- Валидация входных данных
+- Swagger / OpenAPI для документирования API
+- Локальный запуск инфраструктуры через Docker Compose
 
-## Быстрый старт (VS Code)
-1. Установи JDK 11, Docker Desktop, VS Code.
-2. Открой проект в VS Code, подтяни рекомендуемые расширения.
-3. `Terminal → Run Task → infra: up`.
-4. Запусти сервисы через Debug (`Run All Services`) или по отдельности.
-5. Swagger:
-   - MS1: http://localhost:8081/swagger-ui.html
-   - MS2: http://localhost:8082/swagger-ui.html
-   - MS3: http://localhost:8083/swagger-ui.html
-6. RabbitMQ UI: http://localhost:15672 (guest/guest)
+## Архитектура
+
+### service1-sender
+Сервис-отправитель, формирующий и отправляющий события / сообщения в систему.
+### service2-core
+Основной сервис с бизнес-логикой, интеграцией с PostgreSQL и миграциями Flyway.
+### service3-admin
+Административный сервис для управляющих и интеграционных сценариев.
+
+## Технологии
+- Kotlin
+- Spring Boot
+- RabbitMQ
+- PostgreSQL
+- Flyway
+- OpenAPI / Swagger
+- Docker Compose
+
+## Запуск проекта
+
+### Требования
+- JDK 11+
+- Docker Desktop
+- Docker Compose
+
+### 1. Поднять инфраструктуру
+```bash
+docker compose up --build
